@@ -1,0 +1,39 @@
+import wollok.game.*
+import autos.*
+
+program jueguote_como_el_Diegote {
+	//configurara tablero
+	game.height(12)
+	game.width(12)
+	game.boardGround("empedrado.jpg")
+	game.title("Juegote como el Diegote")
+	
+	// agregar autito
+	corsa.position(game.at(0.randomUpTo(game.width()).truncate(0), 0.randomUpTo(game.height()).truncate(0)))
+	game.addVisual(corsa)
+	
+	renault.position(game.at(0.randomUpTo(game.width()).truncate(0), 0.randomUpTo(game.height()).truncate(0)))
+	game.addVisual(renault)
+	
+	
+	
+	
+	
+	keyboard.up().onPressDo({corsa.arriba()})
+	keyboard.down().onPressDo({corsa.abajo()})
+	keyboard.left().onPressDo({corsa.izquierda()})
+	keyboard.right().onPressDo({corsa.derecha()})
+	
+	keyboard.w().onPressDo({renault.arriba()})
+	keyboard.s().onPressDo({renault.abajo()})
+	keyboard.a().onPressDo({renault.izquierda()})
+	keyboard.d().onPressDo({renault.derecha()})
+	
+	
+	
+	
+	
+	game.onCollideDo(renault, {game.removeVisual(corsa)})
+	game.start()
+
+}
